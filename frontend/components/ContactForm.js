@@ -21,8 +21,8 @@ const ContactForm = () => {
   const [errors, setErrors] = useState(errorData);
 
   const errorHandling = (fieldName, fieldValue) => {
-    if (fieldName === "firstName" && fieldValue.length < 5)
-      return `${fieldName} must have at least 5 characters.`;
+    if (fieldName === "firstName" && fieldValue.length <= 3)
+      return `${fieldName} must have at least 3 characters.`;
 
     const emailRegex = /(.*)@(.*)\.(.+)/g;
     if (fieldName === "email" && !fieldValue.match(emailRegex))
@@ -79,6 +79,7 @@ const ContactForm = () => {
             name="firstName"
             value={form.firstName}
             id="firstName"
+            testId="firstName"
             placeholder="Edd"
           />
           {(errors.firstName) && <p data-testid="error">Error: {errors.firstName}</p>}
@@ -89,6 +90,7 @@ const ContactForm = () => {
           <input
             onChange={handleChange}
             id="lastName"
+            testId="lastName"
             name="lastName"
             value={form.lastName}
             placeholder="Burke"
